@@ -4,8 +4,37 @@ import java.util.Random;
 class Main {
   public static void main(String[] args) {
     System.out.println("Hello world!");
-    int[][] sudokuPuzzle = genPuzzle();
-    System.out.println(Arrays.deepToString(sudokuPuzzle));
+    // There are two possible ways I can do this.
+    // Either generate a puzzle from scratch:
+//    int[][] sudokuPuzzle = genPuzzle();
+
+    /*
+    for (int row = 0; row < sudokuPuzzle.length; row++) {
+      for (int column = 0; column < sudokuPuzzle[row].length; column++){
+        System.out.print(sudokuPuzzle[row][column]);
+      }
+    }
+    */
+
+    // Or shift an existing puzzle.
+    int[][] solvedSudokuPuzle = {
+      {1,2,3,4,5,6,7,8,9},
+      {7,8,9,1,2,3,4,5,6},
+      {4,5,6,7,8,9,1,2,3},
+      {3,4,5,6,7,8,9,1,2},
+      {9,1,2,3,4,5,6,7,8},
+      {6,7,8,9,1,2,3,4,5},
+      {5,6,7,8,9,1,2,3,4},
+      {2,3,4,5,6,7,8,9,1},
+      {8,9,1,2,3,4,5,6,7}
+    };
+
+  }
+
+  public static int[][] shuffleRows (int[] row1, int[] row2, int[] row3) {
+    int[][] result = new int[3][9];
+    Random rand = new Random();
+    return result;
   }
 
   public static int[][] genPuzzle() {
