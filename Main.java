@@ -15,21 +15,20 @@ class Main {
 
     int numPlaced = 0;
     for (int row = 0; row < result.length; row++) {
-      for (int index = 0; index < genArray.length; index++) {
+      for (int num = 0; num < genArray.length; num++) {
         while (true) {
-          // Chooses a random coloumn in the array
-          int coloumn = rand.nextInt(9);
+          // Chooses a random column in the array
+          int column = rand.nextInt(9);
 
-          // Checks if the number is free in the current coloumn.
-          boolean numFree = checkColoumn(result,genArray[index],coloumn);
+          // Checks if the number is free in the current column.
+          boolean numFree = checkColumn(result,genArray[num],column);
 
-          if (result[row][coloumn] == 0 && numFree) {
-            // Sets the coloumn to the index in GenArray that we are at.
-            result[row][coloumn] = genArray[index];
+          if (result[row][column] == 0 && numFree) {
+            // Sets the column to the num in GenArray that we are at.
+            result[row][column] = genArray[num];
             numPlaced++;
             System.out.println("Number placed"+numPlaced);
             printArray(result);
-//            System.out.println(Arrays.deepToString(result));
             break;
           }
         }
@@ -38,16 +37,17 @@ class Main {
     return result;
   }
 
-  public static boolean checkColoumn (int[][] puzzle,int number,int coloumn) {
+  public static boolean checkColumn(int[][] puzzle, int number, int column) {
     boolean result = true;
     for (int row = 0; row < puzzle.length;row++) {
-      if (puzzle[row][coloumn] == number) {
+      if (puzzle[row][column] == number) {
         result = false;
       }
     }
     return result;
   }
 
+  // Prints the sudoku puzzle out in grid-like form.
   public static void printArray (int[][] puzzle){
     for (int row = 0; row < puzzle.length; row++){
       System.out.println(Arrays.toString(puzzle[row]));
