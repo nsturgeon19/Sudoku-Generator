@@ -13,6 +13,7 @@ class Main {
     int[][] result = new int[9][9];
     Random rand = new Random(); 
 
+    int numPlaced = 0;
     for (int row = 0; row < result.length; row++) {
       for (int index = 0; index < genArray.length; index++) {
         while (true) {
@@ -25,6 +26,9 @@ class Main {
           if (result[row][coloumn] == 0 && numFree) {
             // Sets the coloumn to the index in GenArray that we are at.
             result[row][coloumn] = genArray[index];
+            numPlaced++;
+            System.out.println("Number placed"+numPlaced);
+            System.out.println(Arrays.deepToString(result));
             break;
           }
         }
