@@ -11,7 +11,7 @@ class Main {
   public static int[][] genPuzzle() {
     int[] genArray = {1,2,3,4,5,6,7,8,9};
     int[][] result = new int[9][9];
-    Random rand = new Random(); 
+    Random rand = new Random();
 
     int numPlaced = 0;
     for (int row = 0; row < result.length; row++) {
@@ -28,7 +28,8 @@ class Main {
             result[row][coloumn] = genArray[index];
             numPlaced++;
             System.out.println("Number placed"+numPlaced);
-            System.out.println(Arrays.deepToString(result));
+            printArray(result);
+//            System.out.println(Arrays.deepToString(result));
             break;
           }
         }
@@ -45,5 +46,11 @@ class Main {
       }
     }
     return result;
+  }
+
+  public static void printArray (int[][] puzzle){
+    for (int row = 0; row < puzzle.length; row++){
+      System.out.println(Arrays.toString(puzzle[row]));
+    }
   }
 }
