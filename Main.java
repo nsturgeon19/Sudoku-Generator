@@ -9,7 +9,6 @@ class Main {
   }
 
   public static int[][] genPuzzle() {
-    int[] genArray = {1,2,3,4,5,6,7,8,9};
     int[][] result = new int[9][9];
     Random rand = new Random();
 
@@ -17,8 +16,8 @@ class Main {
     int numPlaced = 0;
 
     for (int row = 0; row < result.length; row++) {
-      for (int num = 0; num < genArray.length; num++) {
-        if (checkIfStalled(result,genArray[num],row) && row != 0) {
+      for (int num = 1; num < 10; num++) {
+        if (checkIfStalled(result,num,row) && row != 0) {
             clearRow(result,row);
             row--;
             break;
@@ -29,11 +28,11 @@ class Main {
           int column = rand.nextInt(9);
 
           // Checks if the number is free in the current column.
-          boolean numFree = checkColumn(result,genArray[num],column);
+          boolean numFree = checkColumn(result,num,column);
 
           if (result[row][column] == 0 && numFree) {
             // Sets the column to the num in GenArray that we are at.
-            result[row][column] = genArray[num];
+            result[row][column] = num;
             numPlaced++;
             System.out.println("Number placed"+numPlaced);
             printArray(result);
