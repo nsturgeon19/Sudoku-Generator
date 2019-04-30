@@ -13,10 +13,17 @@ class Main {
     int[][] result = new int[9][9];
     Random rand = new Random();
 
+    // Used for debugging. Counts each num as it is placed.
     int numPlaced = 0;
+
     for (int row = 0; row < result.length; row++) {
       for (int num = 0; num < genArray.length; num++) {
-        while (true) {
+        if (checkIfStalled(result,num,row)) {
+            // TODO create a clearRow function.
+            break;
+        }
+          while (true) {
+
           // Chooses a random column in the array
           int column = rand.nextInt(9);
 
@@ -55,12 +62,10 @@ class Main {
   }
 
   // Checks if no more numbers can be placed in the row.
-  public static boolean checkIfStalled (int[][] puzzle, int[] nums, int row) {
-    for (int numIndex = 0; numIndex < nums.length; numIndex++) {
-      for (int column = 0; column < puzzle.length; column++){
-        if (puzzle[row][column] == 0 && checkColumn(puzzle,nums[numIndex],column)){
-          return false;
-        }
+  public static boolean checkIfStalled (int[][] puzzle, int num, int row) {
+    for (int column = 0; column < puzzle.length; column++){
+      if (puzzle[row][column] == 0 && checkColumn(puzzle,num,column)){
+        return false;
       }
     }
     return true;
