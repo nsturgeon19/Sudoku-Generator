@@ -18,11 +18,12 @@ class Main {
 
     for (int row = 0; row < result.length; row++) {
       for (int num = 0; num < genArray.length; num++) {
-        if (checkIfStalled(result,num,row)) {
-            // TODO create a clearRow function.
+        if (checkIfStalled(result,genArray[num],row) && row != 0) {
+            clearRow(result,row);
+            row--;
             break;
         }
-          while (true) {
+        while (true) {
 
           // Chooses a random column in the array
           int column = rand.nextInt(9);
@@ -43,6 +44,12 @@ class Main {
     }
     return result;
   }
+
+
+    public static int[][] clearRow(int[][] puzzle, int row) {
+      Arrays.fill(puzzle[row],0);
+      return puzzle;
+    }
 
     // checks a column for a specific number. If yes, return false.
     public static boolean checkColumn(int[][] puzzle, int number, int column) {
