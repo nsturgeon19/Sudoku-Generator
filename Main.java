@@ -37,7 +37,6 @@ class Main {
     return result;
   }
 
-  // checks a column for a specific number. If yes, return false.
   public static boolean checkColumn(int[][] puzzle, int number, int column) {
     boolean result = true;
     for (int row = 0; row < puzzle.length;row++) {
@@ -53,44 +52,5 @@ class Main {
     for (int row = 0; row < puzzle.length; row++){
       System.out.println(Arrays.toString(puzzle[row]));
     }
-  }
-
-  // Checks if no more numbers can be placed in the row.
-  public static boolean checkIfStalled (int[][] puzzle, int[] nums, int row) {
-    for (int numIndex = 0; numIndex < nums.length; numIndex++) {
-      for (int column = 0; column < puzzle.length; column++){
-        if (puzzle[row][column] == 0 && checkColumn(puzzle,nums[numIndex],column)){
-          return false;
-        }
-      }
-    }
-    return true;
-  }
-
-  // Checks if the row is correct according to the sudoku rules.
-  public static boolean checkRow (int[][] puzzle, int row) {
-    // If any equal 0, return false.
-    for (int column = 0; column < puzzle[row].length; column++){
-      if (puzzle[row][column] == 0){
-        return false;
-      }
-    }
-
-    // Adds 1 every single time a number is found on that space in the array.
-    // e.x. a "5" adds 1 to index 4
-    int[] rowNums = {0,0,0,0,0,0,0,0,0};
-    for (int column = 0; column < puzzle[row].length; column++){
-      int content = puzzle[row][column];
-      rowNums[content-1]++;
-    }
-
-    // checks if we have any duplicate nums in rowNums. If yes, return false.
-    for (int index = 0; index < rowNums.length; index++){
-      if (rowNums[index] > 1) {
-        return false;
-      }
-    }
-
-    return true;
   }
 }
