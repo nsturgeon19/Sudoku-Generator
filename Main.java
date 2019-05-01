@@ -34,7 +34,12 @@ class Main {
       // Picks a boxes' worth of rows.
       int[][] rowsInBox = {solvedSudokuPuzle[box],solvedSudokuPuzle[box+1],solvedSudokuPuzle[box+2]};
       rowsInBox = shuffleRows(rowsInBox);
+      for (int row = 0; row < 3; row++){
+          solvedSudokuPuzle[box+row] = rowsInBox[row];
+      }
     }
+    printArray(solvedSudokuPuzle);
+    System.out.println();
   }
 
   // Takes 3 rows and shuffles them.
