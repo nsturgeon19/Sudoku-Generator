@@ -29,11 +29,25 @@ class Main {
       {8,9,1,2,3,4,5,6,7}
     };
 
+    int[][] firstThreeRows = {solvedSudokuPuzle[0],solvedSudokuPuzle[1],solvedSudokuPuzle[2]};
+    firstThreeRows = shuffleRows(firstThreeRows);
+    System.out.println(Arrays.deepToString(firstThreeRows));
   }
 
-  public static int[][] shuffleRows (int[] row1, int[] row2, int[] row3) {
+  // Takes 3 rows and shuffles them.
+  public static int[][] shuffleRows (int[][] rowsToShuffle) {
     int[][] result = new int[3][9];
+    int[] emptyRow = {0,0,0,0,0,0,0,0,0};
     Random rand = new Random();
+    for (int rowCount = 0; rowCount < rowsToShuffle.length; rowCount++){
+      while (true) {
+        int rowPlacement = rand.nextInt(3);
+        if (Arrays.equals(result[rowPlacement], emptyRow)) {
+          result[rowPlacement] = rowsToShuffle[rowCount];
+          break;
+        }
+      }
+    }
     return result;
   }
 
