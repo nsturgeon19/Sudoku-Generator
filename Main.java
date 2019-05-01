@@ -43,18 +43,21 @@ class Main {
 
     printArray(solvedSudokuPuzle);
 
-    // Creates a representation of the columns that need to be shuffled.
-    int[][] columnsToShuffle = new int[9][3];
-    for (int row = 0; row < solvedSudokuPuzle.length; row++){
-      for (int column = 0; column < 3; column++){
-        columnsToShuffle[row][column] = solvedSudokuPuzle[row][column];
+    for(int box = 0; box < solvedSudokuPuzle.length; box += 3) {
+      // Creates a representation of the columns that need to be shuffled.
+      int[][] columnsToShuffle = new int[9][3];
+      for (int row = 0; row < solvedSudokuPuzle.length; row++) {
+        for (int column = 0; column < 3; column++) {
+          columnsToShuffle[row][column] = solvedSudokuPuzle[row][box+column];
+        }
       }
-    }
 
-    columnsToShuffle = shuffleColumns(columnsToShuffle);
-    for (int row = 0; row < solvedSudokuPuzle.length; row++) {
-      for (int column = 0; column < 3; column++) {
-        solvedSudokuPuzle[row][column] = columnsToShuffle[row][column];
+      columnsToShuffle = shuffleColumns(columnsToShuffle);
+
+      for (int row = 0; row < solvedSudokuPuzle.length; row++) {
+        for (int column = 0; column < 3; column++) {
+          solvedSudokuPuzle[row][box+column] = columnsToShuffle[row][column];
+        }
       }
     }
 
