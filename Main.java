@@ -34,11 +34,28 @@ class Main {
       // Picks a boxes' worth of rows.
       int[][] rowsInBox = {solvedSudokuPuzle[box],solvedSudokuPuzle[box+1],solvedSudokuPuzle[box+2]};
       rowsInBox = shuffleRows(rowsInBox);
+
+      // gives the original puzzle the shuffled rows.
       for (int row = 0; row < 3; row++){
           solvedSudokuPuzle[box+row] = rowsInBox[row];
       }
     }
+
     printArray(solvedSudokuPuzle);
+
+    // Creates a representation of the columns that need to be shuffled.
+    int[][] columnsToShuffle = new int[9][3];
+    for (int row = 0; row < solvedSudokuPuzle.length; row++){
+      for (int column = 0; column < 3; column++){
+        columnsToShuffle[row][column] = solvedSudokuPuzle[row][column];
+      }
+    }
+
+    columnsToShuffle = shuffleColumns(columnsToShuffle);
+
+    System.out.println();
+    printArray(solvedSudokuPuzle);
+
     System.out.println();
   }
 
@@ -54,6 +71,27 @@ class Main {
           result[rowPlacement] = rowsToShuffle[rowCount];
           break;
         }
+      }
+    }
+    return result;
+  }
+
+  public static int[][] shuffleColumns (int[][] columnsToShuffle) {
+    int[][] result = new int[9][3];
+    Random rand = new Random();
+    int[] indexOfColumns = new int[3];
+    for (int number = 0; number < 3; number++) {
+      int index = rand.nextInt(3);
+      if (indexOfColumns[index] == 0) {
+        indexOfColumns[index] = number;
+      } else {
+        number--;
+      }
+    }
+
+    for (int column = 0; column < result[0].length; column++) {
+      for (int row = 0; row < result.length; row++){
+        result[row][column] = columnsToShuffle[row][indexOfColumns[column]];
       }
     }
     return result;
