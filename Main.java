@@ -29,9 +29,12 @@ class Main {
       {8,9,1,2,3,4,5,6,7}
     };
 
-    int[][] firstThreeRows = {solvedSudokuPuzle[0],solvedSudokuPuzle[1],solvedSudokuPuzle[2]};
-    firstThreeRows = shuffleRows(firstThreeRows);
-    System.out.println(Arrays.deepToString(firstThreeRows));
+    // Shuffles the rows, one box at a time.
+    for(int box = 0; box < solvedSudokuPuzle.length; box += 3){
+      // Picks a boxes' worth of rows.
+      int[][] rowsInBox = {solvedSudokuPuzle[box],solvedSudokuPuzle[box+1],solvedSudokuPuzle[box+2]};
+      rowsInBox = shuffleRows(rowsInBox);
+    }
   }
 
   // Takes 3 rows and shuffles them.
