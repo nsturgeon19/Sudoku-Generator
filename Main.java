@@ -37,7 +37,7 @@ class Main {
 
       // gives the original puzzle the shuffled rows.
       for (int row = 0; row < 3; row++){
-          solvedSudokuPuzle[box+row] = rowsInBox[row];
+        solvedSudokuPuzle[box+row] = rowsInBox[row];
       }
     }
 
@@ -52,6 +52,11 @@ class Main {
     }
 
     columnsToShuffle = shuffleColumns(columnsToShuffle);
+    for (int row = 0; row < solvedSudokuPuzle.length; row++) {
+      for (int column = 0; column < 3; column++) {
+        solvedSudokuPuzle[row][column] = columnsToShuffle[row][column];
+      }
+    }
 
     System.out.println();
     printArray(solvedSudokuPuzle);
