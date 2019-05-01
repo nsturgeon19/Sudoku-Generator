@@ -41,7 +41,9 @@ class Main {
       }
     }
 
+    // prints the array after row shuffle
     printArray(solvedSudokuPuzle);
+    System.out.println();
 
     for(int box = 0; box < solvedSudokuPuzle.length; box += 3) {
       // Creates a representation of the columns that need to be shuffled.
@@ -61,10 +63,30 @@ class Main {
       }
     }
 
-    System.out.println();
+    // Print after column shuffle.
     printArray(solvedSudokuPuzle);
-
     System.out.println();
+
+    int[] numShuffleKey = fisherYatesShuffle();
+    for (int row = 0; row < solvedSudokuPuzle.length; row++){
+      for (int column = 0; column < solvedSudokuPuzle[0].length; column++){
+        solvedSudokuPuzle[row][column] = numShuffleKey[solvedSudokuPuzle[row][column]-1];
+      }
+    }
+
+    printArray(solvedSudokuPuzle);
+  }
+
+  public static int[] fisherYatesShuffle() {
+    int[] result = {1,2,3,4,5,6,7,8,9};
+    Random rand = new Random();
+    for (int swapTo = result.length-1; swapTo > 1; swapTo--){
+      int swapToContents = result[swapTo];
+      int swapResult = rand.nextInt(result.length);
+      result[swapTo] = result[swapResult];
+      result[swapResult] = swapToContents;
+    }
+    return result;
   }
 
   // Takes 3 rows and shuffles them.
