@@ -80,14 +80,22 @@ class Main {
 
     System.out.println(emptyCells);
     printArray(notSolvedSudokuPuzzle);
+    System.out.println();
+    printArrayRaw(notSolvedSudokuPuzzle);
   }
 
   // Removes one random number in the array passed in. 
   public static int[][] removeRandom(int[][] puzzle) {
     Random rand = new Random();
-    int row = rand.nextInt(puzzle.length);
-    int column = rand.nextInt(puzzle[0].length);
-    puzzle[row][column] = 0;
+    boolean setCorrectly = false;
+    while (!setCorrectly) {
+      int row = rand.nextInt(puzzle.length);
+      int column = rand.nextInt(puzzle[0].length);
+      if (puzzle[row][column] != 0) {
+        puzzle[row][column] = 0;
+        setCorrectly = true;
+      }
+    }
     return puzzle;
   }
 
