@@ -5,7 +5,7 @@ class Main {
   public static void main(String[] args) {
     System.out.println("Hello world!");
 
-    genPuzzle.genPuzzle();
+    int[][] basicPuzzle = genPuzzle.genPuzzle();
 
   }
 
