@@ -65,6 +65,7 @@ class Main {
 
     // Print final puzzle
     printArray(solvedSudokuPuzle);
+    printArrayRaw(solvedSudokuPuzle);
   }
 
   // Shuffles a list of numbers (1-9) and returns the result.
@@ -123,6 +124,14 @@ class Main {
   public static void printArray (int[][] puzzle){
     for (int row = 0; row < puzzle.length; row++){
       System.out.println(Arrays.toString(puzzle[row]));
+    }
+  }
+
+  public static void printArrayRaw (int[][] puzzle) {
+    for (int row = 0; row < puzzle.length; row++) {
+      for (int column = 0; column < puzzle[0].length; column++) {
+        System.out.print(puzzle[row][column]);
+      }
     }
   }
 
