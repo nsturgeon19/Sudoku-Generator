@@ -18,6 +18,8 @@ class Main {
       {8,9,1,2,3,4,5,6,7}
     };
 
+    Random rand = new Random();
+
     // Shuffles the rows, one box at a time.
     for(int box = 0; box < solvedSudokuPuzle.length; box += 3){
       // Picks a boxes' worth of rows.
@@ -65,7 +67,28 @@ class Main {
 
     // Print final puzzle
     printArray(solvedSudokuPuzle);
+    System.out.println();
     printArrayRaw(solvedSudokuPuzle);
+    System.out.println();
+
+    int[][] notSolvedSudokuPuzzle = solvedSudokuPuzle;
+    // Generates a random num of emptyCells from 40 to 60.
+    int emptyCells = rand.nextInt(21) + 40;
+    for (int removeNum = 0; removeNum < emptyCells; removeNum++){
+      notSolvedSudokuPuzzle = removeRandom(notSolvedSudokuPuzzle);
+    }
+
+    System.out.println(emptyCells);
+    printArray(notSolvedSudokuPuzzle);
+  }
+
+  // Removes one random number in the array passed in. 
+  public static int[][] removeRandom(int[][] puzzle) {
+    Random rand = new Random();
+    int row = rand.nextInt(puzzle.length);
+    int column = rand.nextInt(puzzle[0].length);
+    puzzle[row][column] = 0;
+    return puzzle;
   }
 
   // Shuffles a list of numbers (1-9) and returns the result.
