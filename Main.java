@@ -124,21 +124,11 @@ class Main {
       return puzzle;
     }
 
-    // checks a column for a specific number. If yes, return false.
-    public static boolean checkColumn(int[][] puzzle, int number, int column) {
-        for (int row = 0; row < puzzle.length;row++) {
-            if (puzzle[row][column] == number) {
-                return false;
-            }
-        }
-        return true;
-    }
-
   // Prints a sudoku puzzle out in grid-like form.
   public static void printArray (int[][] puzzle){
     for (int row = 0; row < puzzle.length; row++){
       System.out.println(Arrays.toString(puzzle[row]));
     }
   }
-  
+
 }
