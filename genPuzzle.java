@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Random;
 
-public class genPuzzleTools {
+public class genPuzzle {
 
   // Shuffles a list of numbers (1-9) and returns the result.
   public static int[] fisherYatesShuffle() {

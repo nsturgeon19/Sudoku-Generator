@@ -24,7 +24,7 @@ class Main {
     for(int box = 0; box < solvedSudokuPuzzle.length; box += 3){
       // Picks a boxes' worth of rows.
       int[][] rowsInBox = {solvedSudokuPuzzle[box],solvedSudokuPuzzle[box+1],solvedSudokuPuzzle[box+2]};
-      rowsInBox = genPuzzleTools.shuffleRows(rowsInBox);
+      rowsInBox = genPuzzle.shuffleRows(rowsInBox);
 
       // gives the original puzzle the shuffled rows.
       for (int row = 0; row < 3; row++){
@@ -45,7 +45,7 @@ class Main {
         }
       }
 
-      columnsToShuffle = genPuzzleTools.shuffleColumns(columnsToShuffle);
+      columnsToShuffle = genPuzzle.shuffleColumns(columnsToShuffle);
 
       for (int row = 0; row < solvedSudokuPuzzle.length; row++) {
         for (int column = 0; column < 3; column++) {
@@ -59,7 +59,7 @@ class Main {
     System.out.println();
 
     // shuffles the numbers in the puzzle
-    int[] numShuffleKey = genPuzzleTools.fisherYatesShuffle();
+    int[] numShuffleKey = genPuzzle.fisherYatesShuffle();
     for (int row = 0; row < solvedSudokuPuzzle.length; row++){
       for (int column = 0; column < solvedSudokuPuzzle[0].length; column++){
         solvedSudokuPuzzle[row][column] = numShuffleKey[solvedSudokuPuzzle[row][column]-1];
@@ -76,13 +76,15 @@ class Main {
     // Generates a random num of emptyCells from 40 to 60.
     int emptyCells = rand.nextInt(21) + 40;
     for (int removeNum = 0; removeNum < emptyCells; removeNum++){
-      notSolvedSudokuPuzzle = genPuzzleTools.removeRandom(notSolvedSudokuPuzzle);
+      notSolvedSudokuPuzzle = genPuzzle.removeRandom(notSolvedSudokuPuzzle);
     }
 
     System.out.println(emptyCells);
     printArray(notSolvedSudokuPuzzle);
     System.out.println();
     printArrayRaw(notSolvedSudokuPuzzle);
+
+
   }
 
   // Prints a sudoku puzzle out in grid-like form.
