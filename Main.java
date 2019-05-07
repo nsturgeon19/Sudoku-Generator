@@ -119,11 +119,6 @@ class Main {
     return result;
   }
 
-    public static int[][] clearRow(int[][] puzzle, int row) {
-      Arrays.fill(puzzle[row],0);
-      return puzzle;
-    }
-
   // Prints a sudoku puzzle out in grid-like form.
   public static void printArray (int[][] puzzle){
     for (int row = 0; row < puzzle.length; row++){
