@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class genPuzzle {
 
-  public static void genPuzzle(){
+  public static int[][] genPuzzle(){
     // Or shift an existing puzzle.
     int[][] solvedSudokuPuzzle = {
             {1,2,3,4,5,6,7,8,9},
@@ -83,6 +83,7 @@ public class genPuzzle {
     System.out.println();
     Main.printArrayRaw(notSolvedSudokuPuzzle);
 
+    return notSolvedSudokuPuzzle;
   }
 
   // Shuffles a list of numbers (1-9) and returns the result.
