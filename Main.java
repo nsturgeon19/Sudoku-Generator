@@ -75,7 +75,7 @@ class Main {
     // Generates a random num of emptyCells from 40 to 60.
     int emptyCells = rand.nextInt(21) + 40;
     for (int removeNum = 0; removeNum < emptyCells; removeNum++){
-      notSolvedSudokuPuzzle = removeRandom(notSolvedSudokuPuzzle);
+      notSolvedSudokuPuzzle = genPuzzleTools.removeRandom(notSolvedSudokuPuzzle);
     }
 
     System.out.println(emptyCells);
@@ -83,23 +83,6 @@ class Main {
     System.out.println();
     printArrayRaw(notSolvedSudokuPuzzle);
   }
-
-  // Removes one random number in the array passed in.
-  public static int[][] removeRandom(int[][] puzzle) {
-    Random rand = new Random();
-    boolean setCorrectly = false;
-    while (!setCorrectly) {
-      int row = rand.nextInt(puzzle.length);
-      int column = rand.nextInt(puzzle[0].length);
-      if (puzzle[row][column] != 0) {
-        puzzle[row][column] = 0;
-        setCorrectly = true;
-      }
-    }
-    return puzzle;
-  }
-
-
 
   // Prints a sudoku puzzle out in grid-like form.
   public static void printArray (int[][] puzzle){
