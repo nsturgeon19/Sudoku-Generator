@@ -22,12 +22,16 @@ class Main {
       for (int column = 0; column < candidatePuzzle[0].length; column++) {
         if (candidatePuzzle[row][column][0] == 0) {
           candidatePuzzle[row][column] = makeCandidates(candidatePuzzle, row, column);
+          candidatePuzzle[row][column] = condenseArray(candidatePuzzle[row][column]);
         }
       }
     }
 
     System.out.println("done");
     System.out.println(Arrays.deepToString(candidatePuzzle));
+
+
+
   }
 
   // Prints a sudoku puzzle out in grid-like form.
@@ -67,6 +71,21 @@ class Main {
     // TODO shuffle candidates forward so all 0's are at the back.
 
     return candidatePoss;
+  }
+
+  // Moves all the zero's to the front of the input array
+  public static int[] condenseArray (int[] array){
+    for (int index = 1; index < array.length; index++) {
+      if (index == 0) {
+        index++;
+      }
+      if (array[index]  != 0 && array[index-1] == 0){
+        array[index-1] = array[index];
+        array[index] = 0;
+        index -= 2;
+      }
+    }
+    return array;
   }
 
 }
