@@ -35,6 +35,7 @@ public class genPuzzle {
 //     printArray(solvedSudokuPuzzle);
     System.out.println();
 
+    // Shuffles the columns, one box at a time.
     for(int box = 0; box < solvedSudokuPuzzle.length; box += 3) {
       // Creates a representation of the columns that need to be shuffled.
       int[][] columnsToShuffle = new int[9][3];
