@@ -22,15 +22,12 @@ class Main {
       for (int column = 0; column < candidatePuzzle[0].length; column++) {
         if (candidatePuzzle[row][column][0] == 0) {
           candidatePuzzle[row][column] = makeCandidates(candidatePuzzle, row, column);
-          candidatePuzzle[row][column] = condenseArray(candidatePuzzle[row][column]);
         }
       }
     }
 
     System.out.println("done");
     System.out.println(Arrays.deepToString(candidatePuzzle));
-
-
 
   }
 
@@ -54,12 +51,14 @@ class Main {
   public static int[] makeCandidates (int[][][] candidatePuzzle, int row, int column) {
     int[] candidatePoss = {1,2,3,4,5,6,7,8,9};
 
+    // Checks for rows
     for (int currColumn = 0; currColumn < candidatePuzzle.length; currColumn++){
       if (candidatePuzzle[row][currColumn][0] != 0 && candidatePuzzle[row][currColumn][1] == 0){
         candidatePoss[candidatePuzzle[row][currColumn][0]-1] = 0;
       }
     }
 
+    // Checks for columns
     for (int currRow = 0; currRow < candidatePuzzle[0].length; currRow++){
       if (candidatePuzzle[currRow][column][0] != 0 && candidatePuzzle[currRow][column][1] == 0){
         candidatePoss[candidatePuzzle[currRow][column][0]-1] = 0;
@@ -67,8 +66,10 @@ class Main {
     }
 
     // TODO add box elims.
+    double boxRow = row/3.0;
+    double boxColumn = column/3.0;
 
-    // TODO shuffle candidates forward so all 0's are at the back.
+    candidatePoss = condenseArray(candidatePoss);
 
     return candidatePoss;
   }
