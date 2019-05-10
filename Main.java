@@ -27,7 +27,8 @@ class Main {
     }
 
     System.out.println("done");
-    System.out.println(Arrays.deepToString(candidatePuzzle));
+//    System.out.println(Arrays.deepToString(candidatePuzzle));
+    print3DArray(candidatePuzzle);
 
   }
 
@@ -44,6 +45,13 @@ class Main {
       for (int column = 0; column < puzzle[0].length; column++) {
         System.out.print(puzzle[row][column]);
       }
+    }
+    System.out.println();
+  }
+
+  public static void print3DArray (int[][][] puzzle) {
+    for (int row = 0; row < puzzle.length; row++) {
+      System.out.println(Arrays.deepToString(puzzle[row]));
     }
   }
 
@@ -68,10 +76,10 @@ class Main {
     // Checks for box eliminations
     int boxRow = row/3;
     int boxColumn = column/3;
-    for (int currRow = boxRow; currRow < (boxRow+1)*3; currRow++) {
-      for (int currColumn = boxRow; currColumn < (boxColumn+1)*3; currColumn++){
+    for (int currRow = boxRow*3; currRow < (boxRow+1)*3; currRow++) {
+      for (int currColumn = boxColumn*3; currColumn < (boxColumn+1)*3; currColumn++){
         if (currRow/3 == boxRow && currColumn/3 == boxColumn) {
-          if (candidatePuzzle[currRow][currColumn][0] != 0 && candidatePuzzle[currRow][column][1] == 0) {
+          if (candidatePuzzle[currRow][currColumn][0] != 0 && candidatePuzzle[currRow][currColumn][1] == 0) {
             candidatePoss[candidatePuzzle[currRow][currColumn][0]-1] = 0;
           }
         }
