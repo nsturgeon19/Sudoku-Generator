@@ -51,23 +51,32 @@ class Main {
   public static int[] makeCandidates (int[][][] candidatePuzzle, int row, int column) {
     int[] candidatePoss = {1,2,3,4,5,6,7,8,9};
 
-    // Checks for rows
+    // Checks for row eliminations
     for (int currColumn = 0; currColumn < candidatePuzzle.length; currColumn++){
       if (candidatePuzzle[row][currColumn][0] != 0 && candidatePuzzle[row][currColumn][1] == 0){
         candidatePoss[candidatePuzzle[row][currColumn][0]-1] = 0;
       }
     }
 
-    // Checks for columns
+    // Checks for column eliminations
     for (int currRow = 0; currRow < candidatePuzzle[0].length; currRow++){
       if (candidatePuzzle[currRow][column][0] != 0 && candidatePuzzle[currRow][column][1] == 0){
         candidatePoss[candidatePuzzle[currRow][column][0]-1] = 0;
       }
     }
 
-    // TODO add box elims.
-    double boxRow = row/3.0;
-    double boxColumn = column/3.0;
+    // Checks for box eliminations
+    int boxRow = row/3;
+    int boxColumn = column/3;
+    for (int currRow = boxRow; currRow < (boxRow+1)*3; currRow++) {
+      for (int currColumn = boxRow; currColumn < (boxColumn+1)*3; currColumn++){
+        if (currRow/3 == boxRow && currColumn/3 == boxColumn) {
+          if (candidatePuzzle[currRow][currColumn][0] != 0 && candidatePuzzle[currRow][column][1] == 0) {
+            candidatePoss[candidatePuzzle[currRow][currColumn][0]-1] = 0;
+          }
+        }
+      }
+    }
 
     candidatePoss = condenseArray(candidatePoss);
 
