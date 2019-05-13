@@ -19,7 +19,7 @@ class Main {
     boolean going = true;
     while (going) {
       int[][][] oldPuzzle = candidatePuzzle;
-      // Adds the candidates to the puzzle
+      // Makes the puzzle based off of current solved squares.
       for (int row = 0; row < candidatePuzzle.length; row++) {
         for (int column = 0; column < candidatePuzzle[0].length; column++) {
           if (candidatePuzzle[row][column][0] == 0) {
@@ -59,6 +59,10 @@ class Main {
     for (int row = 0; row < puzzle.length; row++) {
       System.out.println(Arrays.deepToString(puzzle[row]));
     }
+  }
+
+  public static void print3DArrayUF (int[][][] puzzle) {
+
   }
 
   // Checks for any easy eliminations before putting the possibilities in.
