@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Random;
 
 class Main {
   public static void main(String[] args) {
@@ -17,12 +16,19 @@ class Main {
       }
     }
 
-    // Adds the candidates to the puzzle
-    for (int row = 0; row < candidatePuzzle.length; row++) {
-      for (int column = 0; column < candidatePuzzle[0].length; column++) {
-        if (candidatePuzzle[row][column][0] == 0) {
-          candidatePuzzle[row][column] = makeCandidates(candidatePuzzle, row, column);
+    boolean going = true;
+    while (going) {
+      int[][][] oldPuzzle = candidatePuzzle;
+      // Adds the candidates to the puzzle
+      for (int row = 0; row < candidatePuzzle.length; row++) {
+        for (int column = 0; column < candidatePuzzle[0].length; column++) {
+          if (candidatePuzzle[row][column][0] == 0) {
+            candidatePuzzle[row][column] = makeCandidates(candidatePuzzle, row, column);
+          }
         }
+      }
+      if (Arrays.deepEquals(oldPuzzle,candidatePuzzle)) {
+        going = false;
       }
     }
 
