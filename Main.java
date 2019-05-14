@@ -86,18 +86,28 @@ class Main {
 
   // Prints a line that can fit the number of candidates in a puzzle, as provided by segLength.
   public static void printLineForUF (int segLength) {
-    System.out.print("+");
-    System.out.print("-");
-    for (int i = 0; i < segLength*3; i++) {
-      System.out.print("-");
+    for (int box = 0; box < 3; box++) {
+      System.out.print("+");
+      for (int i = 0; i < (segLength*3)+4; i++) {
+        System.out.print("-");
+      }
     }
     System.out.print("+");
+    System.out.println();
   }
 
   public static void print3DArrayUF (int[][][] puzzle) {
     int boxWidth = findLongestLength(puzzle);
-    printLineForUF(boxWidth);
+    String horizontalBoxEdge = "| ";
+    for (int row = 0; row < puzzle.length; row++) {
+      if (row % 3 == 0) {
+        printLineForUF(boxWidth);
+      }
+      for (int column = 0; column < puzzle[0].length; column++) {
 
+      }
+    }
+    System.out.print(horizontalBoxEdge);
     printLineForUF(boxWidth);
   }
 
