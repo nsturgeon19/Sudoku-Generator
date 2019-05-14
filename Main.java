@@ -61,8 +61,44 @@ class Main {
     }
   }
 
-  public static void print3DArrayUF (int[][][] puzzle) {
+  // Finds the largest number of candidates in one box.
+  public static int findLongestLength (int[][][] puzzle) {
+    int result = 0;
+    for (int row = 0; row < puzzle.length; row++) {
+      for (int column = 0; column < puzzle[row].length; column++){
+        int candidateCount = 0;
+        for (int index = 0; index < puzzle[row][column].length; index++) {
+          if (puzzle[row][column][index] == 0){
+            break;
+          } else {
+            candidateCount += 1;
+          }
+        }
+        if (candidateCount == 9) {
+          return 9;
+        } else if (candidateCount > result) {
+          result = candidateCount;
+        }
+      }
+    }
+    return result;
+  }
 
+  // Prints a line that can fit the number of candidates in a puzzle, as provided by segLength.
+  public static void printLineForUF (int segLength) {
+    System.out.print("+");
+    System.out.print("-");
+    for (int i = 0; i < segLength*3; i++) {
+      System.out.print("-");
+    }
+    System.out.print("+");
+  }
+
+  public static void print3DArrayUF (int[][][] puzzle) {
+    int boxWidth = findLongestLength(puzzle);
+    printLineForUF(boxWidth);
+
+    printLineForUF(boxWidth);
   }
 
   // Checks for any easy eliminations before putting the possibilities in.
