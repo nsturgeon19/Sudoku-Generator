@@ -86,6 +86,7 @@ class Main {
 
   // Prints a line that can fit the number of candidates in a puzzle, as provided by segLength.
   public static void printLineForUF (int segLength) {
+    System.out.print(" ");
     for (int box = 0; box < 3; box++) {
       System.out.print("+");
       for (int i = 0; i < (segLength*3)+4; i++) {
@@ -103,8 +104,14 @@ class Main {
       if (row % 3 == 0) {
         printLineForUF(boxWidth);
       }
-      for (int column = 0; column < puzzle[0].length; column++) {
-
+      for (int column = 0; column < puzzle[0].length; column += 3) {
+        if (column % 3 == 0) {
+          System.out.print("  ");
+        }
+        for (int boxColumn = 1; boxColumn < 3; boxColumn++) {
+          System.out.print(" ");
+          // TODO gather num
+        }
       }
     }
     System.out.print(horizontalBoxEdge);
