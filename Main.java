@@ -1,6 +1,9 @@
 import java.util.Arrays;
 
 class Main {
+
+  public static int makeCandidateCount = 0;
+
   public static void main(String[] args) {
     System.out.println("Hello world!");
 
@@ -16,27 +19,29 @@ class Main {
       }
     }
 
-    boolean going = true;
-    while (going) {
-      int[][][] oldPuzzle = candidatePuzzle;
-      // Makes the puzzle based off of current solved squares.
-      for (int row = 0; row < candidatePuzzle.length; row++) {
-        for (int column = 0; column < candidatePuzzle[0].length; column++) {
-          if (candidatePuzzle[row][column][0] == 0) {
-            candidatePuzzle[row][column] = makeCandidates(candidatePuzzle, row, column);
-          }
+    iterateMakeCandidates(candidatePuzzle);
+
+//    System.out.println(Arrays.deepToString(candidatePuzzle));
+//    print3DArray(candidatePuzzle);
+//    print3DArrayUF(candidatePuzzle);
+    System.out.println("done");
+  }
+
+  public static int[][][] iterateMakeCandidates (int[][][] puzzle) {
+    int[][][] oldPuzzle = puzzle;
+    System.out.println("oldPuzzle:");
+    print3DArrayUF(oldPuzzle);
+    // Makes the puzzle based off of current solved squares.
+    for (int row = 0; row < puzzle.length; row++) {
+      for (int column = 0; column < puzzle[0].length; column++) {
+        if (puzzle[row][column][0] == 0) {
+          puzzle[row][column] = makeCandidates(puzzle, row, column);
         }
       }
-      if (Arrays.deepEquals(oldPuzzle,candidatePuzzle)) {
-        going = false;
-      }
     }
-
-    System.out.println("done");
-//    System.out.println(Arrays.deepToString(candidatePuzzle));
-    print3DArray(candidatePuzzle);
-    print3DArrayUF(candidatePuzzle);
-
+    System.out.println("candidatePuzzle");
+    print3DArrayUF(puzzle);
+    return puzzle;
   }
 
   // Prints a sudoku puzzle out in grid-like form.
