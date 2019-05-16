@@ -35,6 +35,7 @@ class Main {
     System.out.println("done");
 //    System.out.println(Arrays.deepToString(candidatePuzzle));
     print3DArray(candidatePuzzle);
+    print3DArrayUF(candidatePuzzle);
 
   }
 
@@ -96,26 +97,32 @@ class Main {
     System.out.print("+");
     System.out.println();
   }
-
+  
+  // Prints the puzzle in a format that a observer can see an understand.
   public static void print3DArrayUF (int[][][] puzzle) {
     int boxWidth = findLongestLength(puzzle);
-    String horizontalBoxEdge = "| ";
+    System.out.println(boxWidth);
+    // String horizontalBoxEdge = "| ";
     for (int row = 0; row < puzzle.length; row++) {
       if (row % 3 == 0) {
         printLineForUF(boxWidth);
       }
-      for (int column = 0; column < puzzle[0].length; column += 3) {
+      for (int column = 0; column < puzzle[0].length; column++) {
         if (column % 3 == 0) {
           System.out.print("  ");
         }
-        for (int boxColumn = 1; boxColumn < 3; boxColumn++) {
-          System.out.print(" ");
-          // TODO gather num
+        System.out.print(" ");
+        for (int candidateColumn = 0; candidateColumn < boxWidth; candidateColumn++) {
+          int candidate = puzzle[row][column][candidateColumn];
+          if (candidate != 0) {
+            System.out.print(candidate);
+          } else {
+            System.out.print(" ");
+          }
         }
       }
+      System.out.println();
     }
-    System.out.print(horizontalBoxEdge);
-    printLineForUF(boxWidth);
   }
 
   // Checks for any easy eliminations before putting the possibilities in.
