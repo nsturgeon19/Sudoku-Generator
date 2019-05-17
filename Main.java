@@ -19,7 +19,16 @@ class Main {
       }
     }
 
-    iterateMakeCandidates(candidatePuzzle);
+    // Makes the puzzle based off of current solved squares.
+    for (int row = 0; row < candidatePuzzle.length; row++) {
+      for (int column = 0; column < candidatePuzzle[0].length; column++) {
+        if (candidatePuzzle[row][column][0] == 0) {
+          candidatePuzzle[row][column] = makeCandidates(candidatePuzzle, row, column);
+        }
+      }
+    }
+
+    removeEasyCandidates(candidatePuzzle);
 
 //    System.out.println(Arrays.deepToString(candidatePuzzle));
 //    print3DArray(candidatePuzzle);
@@ -27,18 +36,11 @@ class Main {
     System.out.println("done");
   }
 
-  public static int[][][] iterateMakeCandidates (int[][][] puzzle) {
+  public static int[][][] removeEasyCandidates(int[][][] puzzle) {
     int[][][] oldPuzzle = puzzle;
     System.out.println("oldPuzzle:");
     print3DArrayUF(oldPuzzle);
-    // Makes the puzzle based off of current solved squares.
-    for (int row = 0; row < puzzle.length; row++) {
-      for (int column = 0; column < puzzle[0].length; column++) {
-        if (puzzle[row][column][0] == 0) {
-          puzzle[row][column] = makeCandidates(puzzle, row, column);
-        }
-      }
-    }
+    // TODO eliminate candidates
     System.out.println("candidatePuzzle");
     print3DArrayUF(puzzle);
     return puzzle;
