@@ -3,6 +3,7 @@ import java.util.Arrays;
 class Main {
 
   public static int makeCandidateCount = 0;
+  public static int attemptNum = (81-40)*8;
 
   public static void main(String[] args) {
     System.out.println("Hello world!");
@@ -28,21 +29,31 @@ class Main {
       }
     }
 
-    removeEasyCandidates(candidatePuzzle);
+    candidatePuzzle = removeEasyCandidates(candidatePuzzle);
 
 //    System.out.println(Arrays.deepToString(candidatePuzzle));
 //    print3DArray(candidatePuzzle);
-//    print3DArrayUF(candidatePuzzle);
+    print3DArrayUF(candidatePuzzle);
     System.out.println("done");
   }
 
   public static int[][][] removeEasyCandidates(int[][][] puzzle) {
-    int[][][] oldPuzzle = puzzle;
-    System.out.println("oldPuzzle:");
-    print3DArrayUF(oldPuzzle);
+//    int[][][] oldPuzzle = puzzle;
+//    System.out.println("oldPuzzle:");
+//    print3DArrayUF(oldPuzzle);
     // TODO eliminate candidates
-    System.out.println("candidatePuzzle");
-    print3DArrayUF(puzzle);
+    for (int attempt = 0; attempt < attemptNum; attempt++) {
+      for (int row = 0; row < puzzle.length; row++) {
+        for (int column = 0; column < puzzle.length; column++) {
+          if (puzzle[row][column][0] != 0 && puzzle[row][column][1] != 0) {
+            puzzle = solvePuzzle.removeBasedOnRow(puzzle,row,column);
+            puzzle = solvePuzzle.removeBasedOnColumn(puzzle,row,column);
+          }
+        }
+      }
+    }
+//    System.out.println("candidatePuzzle");
+//    print3DArrayUF(puzzle);
     return puzzle;
   }
 
@@ -168,7 +179,7 @@ class Main {
     return candidatePoss;
   }
 
-  // Moves all the zero's to the front of the input array
+  // Moves all the zeros to the front of the input array
   public static int[] condenseArray (int[] array){
     for (int index = 1; index < array.length; index++) {
       if (index == 0) {

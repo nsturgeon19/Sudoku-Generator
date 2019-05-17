@@ -3,13 +3,31 @@ public class solvePuzzle {
     int[] candidates = puzzle[row][column];
     for (int index = 0; index < candidates.length; index++){
       if (candidates[index] != 0) {
-        for (int rowColumn = 0; rowColumn < puzzle.length; rowColumn++) {
-          if (puzzle[row][rowColumn][0] == candidates[index] && puzzle[row][rowColumn][1] == 0) {
+        for (int puzzleColumn = 0; puzzleColumn < puzzle.length; puzzleColumn++) {
+          if (puzzle[row][puzzleColumn][0] == candidates[index] && puzzle[row][puzzleColumn][1] == 0) {
             candidates[index] = 0;
           }
         }
       }
     }
+    candidates = Main.condenseArray(candidates);
+    puzzle[row][column] = candidates;
+    return puzzle;
+  }
+
+  public static int[][][] removeBasedOnColumn (int[][][] puzzle, int row, int column) {
+    int[] candidates = puzzle[row][column];
+    for (int index = 0; index < candidates.length; index++) {
+      if (candidates[index] != 0) {
+        for (int puzzleRow = 0; puzzleRow < puzzle[0].length; puzzleRow++) {
+          if (puzzle[puzzleRow][column][0] == candidates[index] && puzzle[row][column][1] == 0) {
+            candidates[index] = 0;
+          }
+        }
+      }
+    }
+    candidates = Main.condenseArray(candidates);
+    puzzle[row][column] = candidates;
     return puzzle;
   }
 }
