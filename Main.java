@@ -29,10 +29,14 @@ class Main {
       }
     }
 
+    System.out.println("Before");
+    print3DArrayUF(candidatePuzzle);
+
     candidatePuzzle = removeEasyCandidates(candidatePuzzle);
 
 //    System.out.println(Arrays.deepToString(candidatePuzzle));
 //    print3DArray(candidatePuzzle);
+    System.out.println("After");
     print3DArrayUF(candidatePuzzle);
     System.out.println("done");
   }
@@ -41,7 +45,6 @@ class Main {
 //    int[][][] oldPuzzle = puzzle;
 //    System.out.println("oldPuzzle:");
 //    print3DArrayUF(oldPuzzle);
-    // TODO eliminate candidates
     for (int attempt = 0; attempt < attemptNum; attempt++) {
       for (int row = 0; row < puzzle.length; row++) {
         for (int column = 0; column < puzzle.length; column++) {
