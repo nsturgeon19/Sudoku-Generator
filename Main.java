@@ -148,6 +148,7 @@ class Main {
       }
       System.out.println();
     }
+    printLineForUF(boxWidth);
   }
 
   // Checks for any easy eliminations before putting the possibilities in.
