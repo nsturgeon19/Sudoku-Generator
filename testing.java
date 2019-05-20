@@ -15,6 +15,8 @@ public class testing {
     };
     int[][][] candidatePuzzle = new int[9][9][9];
 
+    Main.printArrayRaw(badPuzzle);
+
     // Adds a third dimension for candidates in the puzzle.
     for (int row = 0; row < candidatePuzzle.length; row++) {
       for (int column = 0; column < candidatePuzzle[0].length; column++){
