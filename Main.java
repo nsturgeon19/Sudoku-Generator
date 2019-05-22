@@ -45,23 +45,29 @@ class Main {
 //    int[][][] oldPuzzle = puzzle;
 //    System.out.println("oldPuzzle:");
 //    print3DArrayUF(oldPuzzle);
+    int[][][] result = puzzle;
     for (int attempt = 0; attempt < attemptNum; attempt++) {
       for (int row = 0; row < puzzle.length; row++) {
         for (int column = 0; column < puzzle.length; column++) {
           boolean testIt = puzzle[row][column][0] != 0 && puzzle[row][column][1] != 0;
           if (testIt) {
-            puzzle = solvePuzzle.removeBasedOnRow(puzzle,row,column);
+            result = solvePuzzle.removeBasedOnRow(puzzle,row,column);
           }
-          boolean testItStill = puzzle[row][column][0] != 0 && puzzle[row][column][1] != 0;
-          if (testItStill) {
-            puzzle = solvePuzzle.removeBasedOnColumn(puzzle,row,column);
+        }
+      }
+//      print3DArrayUF(result);
+      for (int row = 0; row < puzzle.length; row++) {
+        for (int column = 0; column < puzzle.length; column++) {
+          boolean testIt = puzzle[row][column][0] != 0 && puzzle[row][column][1] != 0;
+          if (testIt) {
+            result = solvePuzzle.removeBasedOnColumn(puzzle,row,column);
           }
         }
       }
     }
 //    System.out.println("candidatePuzzle");
-//    print3DArrayUF(puzzle);
-    return puzzle;
+    print3DArrayUF(result);
+    return result;
   }
 
   // Prints a sudoku puzzle out in grid-like form.

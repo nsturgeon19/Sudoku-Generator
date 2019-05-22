@@ -33,15 +33,15 @@ public class testing {
       }
     }
 
-    System.out.println("Before");
-    Main.print3DArrayUF(candidatePuzzle);
+//    System.out.println("Before");
+//    Main.print3DArrayUF(candidatePuzzle);
 
     candidatePuzzle = Main.removeEasyCandidates(candidatePuzzle);
 
 //    System.out.println(Arrays.deepToString(candidatePuzzle));
 //    print3DArray(candidatePuzzle);
-    System.out.println("After");
-    Main.print3DArrayUF(candidatePuzzle);
-    System.out.println("done");
+//    System.out.println("After");
+//    Main.print3DArrayUF(candidatePuzzle);
+//    System.out.println("done");
   }
 }

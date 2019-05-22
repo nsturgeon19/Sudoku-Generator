@@ -17,6 +17,7 @@ public class solvePuzzle {
   }
 
   public static int[][][] removeBasedOnColumn (int[][][] puzzle, int row, int column) {
+//    System.out.println("removeBasedOnColumn");
     int[] candidates = puzzle[row][column];
     for (int index = 0; index < candidates.length; index++) {
       if (candidates[index] != 0) {
